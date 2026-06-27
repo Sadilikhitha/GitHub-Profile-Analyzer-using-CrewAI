@@ -195,23 +195,14 @@ Enter a GitHub username and click **Analyze GitHub Profile**.
 # 📸 Screenshots
 <img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/d14828ce-5343-420a-bc4e-f81bb22bbb3e" />
 
+<img width="1167" height="907" alt="image" src="https://github.com/user-attachments/assets/95b6f91c-0961-4911-a1da-879102d8b1fe" />
+
+
 ## 🎥 Project Demo
 
 <p align="center">
-  <img src="images/demo.gif" width="900" alt="Project Demo">
+  <img src="images/demo.gif" width="700" alt="Project Demo">
 </p>
-
-
-
-### ⚙️ CrewAI Workflow (Optional)
-
-> Add your architecture/workflow diagram here
-
-```
-images/workflow.png
-```
-
----
 
 ## 📚 What I Learned
 
