@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>GitHub Profile Analyzer</h1>
+
+    <p class="subtitle">
+        Enter a GitHub username to generate an AI-powered developer summary and blog.
+    </p>
+
+    <input
+        id="username"
+        placeholder="Enter GitHub Username"
+    >
+
+    <button onclick="analyze()">
+        Analyze
+    </button>
+
+    <div id="output"></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/static/script.js"></script>
+
+</body>
+</html>
