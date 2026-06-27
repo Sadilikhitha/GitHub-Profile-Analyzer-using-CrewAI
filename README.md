@@ -197,12 +197,39 @@ Enter a GitHub username and click **Analyze GitHub Profile**.
 
 <img width="1167" height="907" alt="image" src="https://github.com/user-attachments/assets/95b6f91c-0961-4911-a1da-879102d8b1fe" />
 
-
-## 🎥 Project Demo
-
-<p align="center">
-  <img src="images/demo.gif" width="700" alt="Project Demo">
-</p>
+# WorkFlow
+                 User
+                   │
+                   ▼
+        Enters GitHub Username
+                   │
+                   ▼
+             FastAPI Backend
+                   │
+                   ▼
+             CrewAI Orchestrator
+                   │
+         ┌─────────┴─────────┐
+         ▼                   ▼
+GitHub Profile Agent     Blog Writer Agent
+         │
+         │ Analyzes GitHub profile
+         │ Extracts skills
+         │ Finds technologies
+         │ Summarizes repositories
+         ▼
+  Developer Summary
+         │
+         ▼
+Blog Writer Agent
+         │ Reads the summary
+         │ Generates a professional blog
+         ▼
+      Final Blog
+         │
+         ▼
+   Displayed on Website
+   
 
 ## 📚 What I Learned
 
