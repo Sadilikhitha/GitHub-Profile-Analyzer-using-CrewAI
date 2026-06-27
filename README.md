@@ -229,8 +229,3 @@ Enter a GitHub username and click **Analyze GitHub Profile**.
 
 **Likhitha Sadi**
 
-GitHub: https://github.com/Sadilikhitha
-
----
-
-## ⭐ If you found this project useful, consider giving it a star!
