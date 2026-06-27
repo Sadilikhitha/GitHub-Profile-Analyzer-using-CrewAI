@@ -193,44 +193,14 @@ Enter a GitHub username and click **Analyze GitHub Profile**.
 ---
 
 # 📸 Screenshots
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/d14828ce-5343-420a-bc4e-f81bb22bbb3e" />
+<img width="900" height="720" alt="image" src="https://github.com/user-attachments/assets/d14828ce-5343-420a-bc4e-f81bb22bbb3e" />
 
-<img width="1167" height="907" alt="image" src="https://github.com/user-attachments/assets/95b6f91c-0961-4911-a1da-879102d8b1fe" />
+<img width="900" height="907" alt="image" src="https://github.com/user-attachments/assets/95b6f91c-0961-4911-a1da-879102d8b1fe" />
 
 # WorkFlow
-                 User
-                   │
-                   ▼
-        Enters GitHub Username
-                   │
-                   ▼
-             FastAPI Backend
-                   │
-                   ▼
-             CrewAI Orchestrator
-                   │
-         ┌─────────┴─────────┐
-         ▼                   ▼
-GitHub Profile Agent     Blog Writer Agent
-         │
-         │ Analyzes GitHub profile
-         │ Extracts skills
-         │ Finds technologies
-         │ Summarizes repositories
-         ▼
-  Developer Summary
-         │
-         ▼
-Blog Writer Agent
-         │ Reads the summary
-         │ Generates a professional blog
-         ▼
-      Final Blog
-         │
-         ▼
-   Displayed on Website
-   
+<img width="427" height="631" alt="image" src="https://github.com/user-attachments/assets/47c54e94-7e96-4390-96ab-5a71d8f8ae1c" />
 
+    
 ## 📚 What I Learned
 
 * Building Multi-Agent AI systems
