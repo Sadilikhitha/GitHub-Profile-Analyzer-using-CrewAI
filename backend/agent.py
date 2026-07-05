@@ -9,8 +9,8 @@ from crewai import LLM
 load_dotenv()  # Load environment variables from .env file
 
 llm = LLM(
-    model="groq/llama-3.3-70b-versatile",
-    api_key=os.getenv("GROQ_API_KEY")
+    model="gemini/gemini-2.5-flash",
+    api_key=os.getenv("GOOGLE_API_KEY")
 )
 
 github_agent = Agent(
@@ -26,14 +26,14 @@ github_agent = Agent(
     tools = [githubtool]
 )
 
-writer_agent = Agent(
-    role="Technical Blog Writer",
-    goal="Create an engaging and professional blog post from the GitHub profile summary provided by the GitHub Profile Analyzer",
+interview_agent = Agent(
+    role="Technical Interview Preparation Expert",
+    goal="Generate personalized interview questions and preparation tips based on the developer's GitHub profile summary.",
     backstory=(
-        "You are a skilled technical content writer and developer advocate. You specialize "
-        "in transforming technical information, project details, and developer achievements "
-        "into compelling blog articles that are easy to read and engaging for a wide audience."
+        "You are an experienced Software Engineering interviewer who has "
+        "conducted hundreds of interviews for AI, Backend, Full Stack, and "
+        "Software Developer roles. You analyze GitHub profiles to prepare "
+        "candidates with relevant technical and HR interview questions."
     ),
-    llm=llm,
-    tools = [githubtool]
+    llm=llm
 )
