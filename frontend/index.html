@@ -1,45 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Profile Analyzer</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GitHub Profile Analyzer</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 
 <body>
 
-<div class="container">
+<nav>
 
-    <h1>GitHub Profile Analyzer</h1>
+<div class="logo">
 
-    <p class="subtitle">
-        Enter a GitHub username to generate an AI-powered developer summary and blog.
-    </p>
-
-    <input
-        id="username"
-        placeholder="Enter GitHub Username"
-    >
-
-    <button onclick="analyze()">
-        Analyze
-    </button>
-
-    <div id="loader" class="loader-box">
-
-    <div class="spinner"></div>
-
-    <h3 id="loading-text">
-        Connecting to GitHub...
-    </h3>
-
-    </div>
-
-    <div id="output"></div>
+🚀 GitHub Profile Analyzer
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</nav>
+
+<div class="container">
+
+<h1>Analyze Any GitHub Profile</h1>
+
+<p class="subtitle">
+
+AI-powered Developer Summary & Interview Preparation
+
+</p>
+
+<div class="search-box">
+
+<input
+id="username"
+placeholder="Enter GitHub Username">
+
+<button onclick="analyze()">
+
+Analyze
+
+</button>
+
+</div>
+
+<div id="loader" class="loader-box">
+
+<div class="spinner"></div>
+
+<h3 id="loading-text">
+
+Connecting to GitHub...
+
+</h3>
+
+</div>
+
+<div id="result" style="display:none;">
+
+<div class="tabs">
+
+<button class="tab active"
+
+onclick="showTab('summary',this)">
+
+👤 Summary
+
+</button>
+
+<button class="tab"
+
+onclick="showTab('projects',this)">
+
+📂 Projects
+
+</button>
+
+<button class="tab"
+
+onclick="showTab('interview',this)">
+
+🎯 Interview
+
+</button>
+
+</div>
+
+<div class="tab-body">
+
+<div id="summary" class="tab-content"></div>
+
+<div id="projects"
+
+class="tab-content"
+
+style="display:none;"></div>
+
+<div id="interview"
+
+class="tab-content"
+
+style="display:none;"></div>
+
+</div>
+
+</div>
+
+</div>
+
 <script src="/static/script.js"></script>
 
 </body>

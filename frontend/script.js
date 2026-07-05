@@ -1,3 +1,18 @@
+function showTab(tabName, btn) {
+
+    document.querySelectorAll(".tab-content").forEach(tab => {
+        tab.style.display = "none";
+    });
+
+    document.querySelectorAll(".tab").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document.getElementById(tabName).style.display = "block";
+    btn.classList.add("active");
+}
+
+
 async function analyze() {
 
     const username = document.getElementById("username").value.trim();
@@ -7,93 +22,143 @@ async function analyze() {
         return;
     }
 
+    document.getElementById("result").style.display = "none";
+
     const loader = document.getElementById("loader");
-    const output = document.getElementById("output");
     const loadingText = document.getElementById("loading-text");
 
-    output.innerHTML = "";
     loader.style.display = "block";
-
-    const messages = [
-        "🔍 Connecting to GitHub...",
-        "📂 Fetching repositories...",
-        "🧠 Analyzing projects and technologies...",
-        "📊 Extracting developer skills...",
-        "📝 Generating developer summary...",
-        "🤖 Writing technical blog...",
-        "✨ Finalizing results..."
-    ];
-
-    let i = 0;
-
-    const animation = setInterval(() => {
-
-        loadingText.innerText = messages[i];
-
-        if (i < messages.length - 1) {
-            i++;
-        }
-
-    }, 1500);
 
     try {
 
-        const response = await fetch("http://127.0.0.1:8000/analyze", {
+        loadingText.innerText = "🔍 Analyzing GitHub Profile...";
+
+        // ----------------------------
+        // SUMMARY
+        // ----------------------------
+
+        const summaryResponse = await fetch("http://127.0.0.1:8000/analyze-summary", {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify({
                 github_username: username
             })
+
         });
 
-        const data = await response.json();
+        const summaryData = await summaryResponse.json();
 
-        clearInterval(animation);
-        loader.style.display = "none";
-
-        console.log(data);
-
-        if (data.result) {
-
-            output.innerHTML = marked.parse(data.result);
-
-        } else {
-
-            output.innerHTML = `
-                <div style="
-                    background:#fff3cd;
-                    color:#856404;
-                    border:1px solid #ffeeba;
-                    padding:20px;
-                    border-radius:10px;
-                ">
-                    <h3>⚠️ AI Analysis Failed</h3>
-                    <p>${data.error || data.detail || "Unknown error occurred."}</p>
-                </div>
-            `;
-
+        if (!summaryResponse.ok) {
+            throw new Error(summaryData.detail);
         }
 
-    } catch (error) {
 
-        clearInterval(animation);
+        loadingText.innerText = "🤖 Preparing Interview Questions...";
+
+
+        // ----------------------------
+        // INTERVIEW
+        // ----------------------------
+
+        const interviewResponse = await fetch("http://127.0.0.1:8000/generate-interview", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                summary: summaryData.summary
+            })
+
+        });
+
+        const interviewData = await interviewResponse.json();
+
+        if (!interviewResponse.ok) {
+            throw new Error(interviewData.detail);
+        }
+
+        loader.style.display = "none";
+        document.getElementById("result").style.display = "block";
+
+
+        // ----------------------------
+        // SUMMARY
+        // ----------------------------
+
+        document.getElementById("summary").innerHTML = `
+
+        <div class="card">
+
+        ${marked.parse(summaryData.summary)}
+
+        </div>
+
+        `;
+
+
+        // ----------------------------
+        // PROJECTS
+        // ----------------------------
+
+        const projectRegex = /# 📂 Top Projects([\s\S]*?)(# ⭐|$)/;
+
+        const projectMatch = summaryData.summary.match(projectRegex);
+
+        document.getElementById("projects").innerHTML = `
+
+        <div class="card">
+
+        <h2>📂 Top Projects</h2>
+
+        ${projectMatch
+            ? marked.parse(projectMatch[1])
+            : "<p>Projects information unavailable.</p>"}
+
+        </div>
+
+        `;
+
+
+        // ----------------------------
+        // INTERVIEW
+        // ----------------------------
+
+        document.getElementById("interview").innerHTML = `
+
+        <div class="card">
+
+        ${marked.parse(interviewData.interview)}
+
+        </div>
+
+        `;
+
+    }
+
+    catch (error) {
+
         loader.style.display = "none";
 
-        console.error(error);
+        document.getElementById("result").style.display = "block";
 
-        output.innerHTML = `
-            <div style="
-                background:#fee2e2;
-                color:#b91c1c;
-                border:1px solid #fecaca;
-                padding:20px;
-                border-radius:10px;
-            ">
-                <h3>❌ Connection Error</h3>
-                <p>Unable to connect to the FastAPI backend.</p>
-            </div>
+        document.getElementById("summary").innerHTML = `
+
+        <div class="card">
+
+        <h2>❌ Error</h2>
+
+        <p>${error.message}</p>
+
+        </div>
+
         `;
 
     }
