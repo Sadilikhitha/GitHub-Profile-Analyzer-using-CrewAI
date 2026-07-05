@@ -1,10 +1,8 @@
+import os
+from dotenv import load_dotenv
 from crewai import Agent, LLM
+
 from tools import githubtool
-import os
-from dotenv import load_dotenv
-import os
-from dotenv import load_dotenv
-from crewai import LLM
 
 load_dotenv()  # Load environment variables from .env file
 

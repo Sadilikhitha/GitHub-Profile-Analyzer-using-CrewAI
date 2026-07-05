@@ -37,7 +37,7 @@ async function analyze() {
         // SUMMARY
         // ----------------------------
 
-        const summaryResponse = await fetch("http://127.0.0.1:8000/analyze-summary", {
+        const summaryResponse = await fetch("analyze-summary",{
 
             method: "POST",
 
@@ -65,7 +65,7 @@ async function analyze() {
         // INTERVIEW
         // ----------------------------
 
-        const interviewResponse = await fetch("http://127.0.0.1:8000/generate-interview", {
+        const interviewResponse = await fetch("/generate-interview", {
 
             method: "POST",
 
